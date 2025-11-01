@@ -1,0 +1,1 @@
+Mysql_Root_Password: "{{ lookup('amazon.aws.aws_ssm', '/azharproject/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"

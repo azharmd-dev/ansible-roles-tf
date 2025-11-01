@@ -1,0 +1,29 @@
+  - name: install mysql server
+    ansible.builtin.package:
+      name: mysql-server
+      state: present
+  
+  - name: start and enable mysql
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
+
+  - name: install mysql python libraries
+    ansible.builtin.pip:
+      executable: pip3.9
+      name: "{{ item }}"
+    loop:
+    - botocore
+    - boto3
+  
+  # - name: Load MySQL secret variables
+  #   ansible.builtin.include_vars:
+  #    file: "{{ role_path }}/vars/secrets.yaml"
+
+  # - name: Debug MySQL password
+  #   ansible.builtin.debug:
+  #     msg: "Mysql_Password = {{ Mysql_Password }}"
+
+  - name: setup for root user password
+    ansible.builtin.command: mysql_secure_installation --set-root-pass {{ Mysql_Root_Password }}
