@@ -1,13 +1,15 @@
 domain_name: azharprojects.site
+#databases
 Mongodb_Host: mongodb-{{ env }}.{{ domain_name }}
 Redis_Host: redis-{{ env }}.{{ domain_name }}
-User_Host: user-{{ env }}.{{ domain_name }}
-Catalogue_Host: catalogue-{{ env }}.{{ domain_name }}
 Rabbitmq_Host: rabbitmq-{{ env }}.{{ domain_name }}
 Mysql_Host: mysql-{{ env }}.{{ domain_name }}
-Cart_Host: cart-{{ env }}.{{ domain_name }}
-Payment_Host: payment-{{ env }}.{{ domain_name }}
-Shipping_Host: shipping-{{ env }}.{{ domain_name }}
+#backend
+User_Host: user.backend-alb-{{ env }}.{{ domain_name }}
+Catalogue_Host: catalogue.backend-alb-{{ env }}.{{ domain_name }}
+Cart_Host: cart.backend-alb-{{ env }}.{{ domain_name }}
+Payment_Host: payment.backend-alb-{{ env }}.{{ domain_name }}
+Shipping_Host: shipping.backend-alb-{{ env }}.{{ domain_name }}
 version: "{{ 1.0 }}"
 
 Mysql_Root_Password: "{{ lookup('amazon.aws.aws_ssm', '/azharproject/{{ env }}/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"
