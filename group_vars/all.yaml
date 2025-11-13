@@ -13,4 +13,4 @@ Shipping_Host: shipping.backend-alb-{{ env }}.{{ domain_name }}
 version: "{{ 1.0 }}"
 
 Mysql_Root_User: root
-Mysql_Root_Password: "{{ lookup('amazon.aws.aws_ssm', '/azharproject/{{ env }}/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"
+Mysql_Root_Password: "{{ lookup('amazon.aws.aws_ssm', '/azharproject/dev/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"
