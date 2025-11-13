@@ -15,6 +15,8 @@
   loop:
   - cryptography
   - PyMySQL
+  - botocore
+  - boto3
 
 - name: import shipping data into mysql
   community.mysql.mysql_db:
