@@ -15,8 +15,6 @@
   loop:
   - cryptography
   - PyMySQL
-  - botocore
-  - boto3
 
 - name: import shipping data into mysql
   community.mysql.mysql_db:
@@ -24,7 +22,7 @@
     name: all
     login_host: "{{ Mysql_Host }}"
     login_user: "{{ Mysql_Root_User }}"
-    login_password: "{{ Mysql_Root_Password }}"
+    login_password: "{{ mysql_password_plain }}" ##recent change
     target: "{{ item }}"
   loop:
   - /app/db/schema.sql
