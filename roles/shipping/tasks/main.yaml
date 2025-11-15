@@ -15,6 +15,8 @@
   loop:
   - cryptography
   - PyMySQL
+  - boto3
+  - botocore
 
 - name: Explicitly look up and set MySQL root password as a simple fact
   ansible.builtin.set_fact:
@@ -22,7 +24,7 @@
   # IMPORTANT: Force the lookup to happen on the controller where credentials exist
   delegate_to: localhost
   run_once: true
-  
+
 - name: import shipping data into mysql
   community.mysql.mysql_db:
     state: import
