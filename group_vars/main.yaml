@@ -1,1 +1,9 @@
 # Mysql_Root_Password: "{{ lookup('amazon.aws.aws_ssm', '/azharproject/{{ env }}/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"
+
+- name: Explicitly look up and set MySQL root password as a simple fact
+  ansible.builtin.set_fact:
+    mysql_password_plain: "{{ lookup('amazon.aws.aws_ssm', '/azharproject/dev/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"
+  # IMPORTANT: Force the lookup to happen on the controller where credentials exist
+  delegate_to: localhost
+  run_once: true
+
